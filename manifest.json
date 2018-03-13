@@ -1,0 +1,18 @@
+{ 
+  "manifest_version": 2,
+  "name": "Bookmap // Hotmark",
+  "description": "Fixes the need for a hotkey-able bookmarker",
+  "version": "1.0",
+  "author": "Michael Walker, www.github.com/mdubbpro",
+  "permissions": [
+    "bookmarks",
+    "tabs",
+    "storage"
+  ],
+  "browser_action": {
+      "default_title": "Bookmap // Hotmark",
+      "default_icon": "icons/tabby.png",
+      "default_popup": "index.html"
+  },
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'"
+}
