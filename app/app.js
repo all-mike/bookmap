@@ -1,4 +1,4 @@
-angular.module('myapp', [])
+angular.module('myapp')
 
   .component('main', {
     template: `
@@ -10,34 +10,38 @@ angular.module('myapp', [])
         <div ng-repeat="bm in $ctrl.folders">
           {{bm.title}}
         </div>
+        <input ng-model="$ctrl.fview"></input>
         <button ng-click="$ctrl.say()">work</button>
       </div> 
     `,
     
-    controller(bookMarks) {
+    controller(bookMarks, $timeout) {
       // Variables to track
       const ctrl = this;
       this.folders = [];
       this.fview = 1;
       this.currentTab = '';
       this.say = () => {
-        console.log(ctrl.folders)
+        console.log('autoclick on', $scope.folders)
       }
 
       // Variables for new input
       this.inputTitle = '';
 
       // === Initialize ===
-      this.$onInit = function() {
+      this.$onInit = () => {
 
         //Get selected tab
-        chrome.tabs.getSelected(null, function(tab){
-          currentTab = tab;
-          inputTitle = currentTab.title
-        })
+        // chrome.tabs.getSelected(null, function(tab){
+        //   currentTab = tab;
+        //   inputTitle = currentTab.title
+        // })
 
-        ctrl.folders = bookMarks.get();
-        ctrl.say();
+        bookMarks.get((results)=>{
+          ctrl.folders = results;
+        });        
+
+        $timeout()
 
       };
     }

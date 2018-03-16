@@ -5,7 +5,7 @@ angular.module('myapp')
 
 
 
-    bmstore.get = function() {
+    bmstore.get = function(callback) {
       let results = [];
 
       chrome.bookmarks.getTree(function(bmNodes){
@@ -29,7 +29,7 @@ angular.module('myapp')
         }
       }
 
-      return results;
+      callback(results);
     }
 
 
