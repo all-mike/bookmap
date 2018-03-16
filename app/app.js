@@ -1,29 +1,13 @@
-angular.module('myapp')
+angular.module('myapp', [])
 
   .component('main', {
-    template: `
 
-    <!-- === Header/Nav === -->
-      <div> Folders: </div>
-      SUP ALEX
-      <div>
-        <div ng-repeat="bm in $ctrl.folders">
-          {{bm.title}}
-        </div>
-        <input ng-model="$ctrl.fview"></input>
-        <button ng-click="$ctrl.say()">work</button>
-      </div> 
-    `,
-    
     controller(bookMarks, $timeout) {
       // Variables to track
       const ctrl = this;
       this.folders = [];
       this.fview = 1;
       this.currentTab = '';
-      this.say = () => {
-        console.log('autoclick on', $scope.folders)
-      }
 
       // Variables for new input
       this.inputTitle = '';
@@ -44,7 +28,25 @@ angular.module('myapp')
         $timeout()
 
       };
-    }
+    },
+
+    template: 
+    `
+      <div>
+        <!-- Header -->
+        <h4> Folders: </h4>
+
+        <!-- Folder Reaper -->
+        <div class="container">
+          <div ng-repeat="bm in $ctrl.folders">
+            {{bm.title}}
+          </div>
+          <input ng-model="$ctrl.fview"></input>
+          <button ng-click="">Save</button>
+        </div>
+
+      </div>
+    `
   });
 
 
