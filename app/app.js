@@ -48,18 +48,17 @@ angular.module('myapp', ['ui.bootstrap'])
 
     template: 
     `
-      <div>
+      <div class="papa">
         <!-- Header -->
         <h4> Folders: </h4>
 
-        <!-- Folder Reaper -->
+        <!-- Folder Reapeater 
         <div class="container">
           <div ng-repeat="bm in $ctrl.folders">
-            <!--{{bm.title}}-->
+            {{bm.title}}
           </div>
         </div>
-
-
+        -->
 
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
