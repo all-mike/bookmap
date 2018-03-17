@@ -10,7 +10,10 @@ angular.module('myapp', [])
       this.currentTab = '';
 
       // Variables for new input
-      this.inputTitle = '';
+      this.searchKey = '';
+
+      // Autocomplete logic
+      this.autocomp = function(){}
 
       // === Initialize ===
       this.$onInit = () => {
@@ -41,9 +44,11 @@ angular.module('myapp', [])
           <div ng-repeat="bm in $ctrl.folders">
             {{bm.title}}
           </div>
-          <input ng-model="$ctrl.fview"></input>
+          <div custom-select="bm as bm.title for bm in $ctrl.folders" ng-model="$ctrl.searchKey"></div>
           <button ng-click="">Save</button>
         </div>
+
+
 
       </div>
     `
