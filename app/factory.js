@@ -3,8 +3,6 @@ angular.module('myapp')
   .factory('bookMarks', function(){
     var bmstore = {};
 
-
-
     bmstore.get = function(callback) {
       let results = [];
 
@@ -19,11 +17,11 @@ angular.module('myapp')
 
       const getFolders = function(node){
         if (node.children){
-          // results.push({
-          //   title: node.title,
-          //   id: node.id
-          // })
-          results.push(node.title)
+          results.push({
+            title: node.title,
+            id: node.id
+          })
+          // results.push(node.title)
           node.children.forEach(function(node){
             getFolders(node);
           })
@@ -32,7 +30,6 @@ angular.module('myapp')
 
       callback(results);
     }
-
 
     return bmstore;
 

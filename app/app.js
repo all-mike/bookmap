@@ -15,24 +15,31 @@ angular.module('myapp', ['ui.bootstrap'])
       // Autocomplete logic
       this.autocomp = function(){}
 
+      // Bookmark saving logic
+      this.savebm = () => {
+        ctrl.getTab()
+        chrome.bookmarks.create({
+          parentId: $scope.selected.id,
+          title: $scope.currentTitle,
+          url: $scope.currentTab});
+        window.close();
+      }
+
+      this.getTab = () => {
+        return chrome.tabs.getSelected(null, function(tab){
+          console.log(tab);
+          $scope.currentTab = tab.url;
+          $scope.currentTitle = tab.title;
+        })
+      }
+
+      this.testMod = (event) => {
+        console.log('test-inspection: ', event)
+        console.log('test-inspection: value', event.value)
+      }
+
       // === Initialize ===
       this.$onInit = () => {
-
-
-        // POSSIBLE NECESSARY TYPEAHEAD
-
-        // $('#the-basics .typeahead').typeahead({
-        //   hint: true,
-        //   highlight: true,
-        //   minLength: 1
-        // },
-        // {
-        //   name: 'states',
-        //   source: substringMatcher(states)
-        // });
-
-        
-      // END POSSIBLE NECESSARY TYPEAHEAD
 
         bookMarks.get((results)=>{
           $scope.folders = results;
@@ -40,6 +47,12 @@ angular.module('myapp', ['ui.bootstrap'])
         });
         
         $scope.selected = undefined;
+
+        $scope.keydown = function() {
+          ctrl.savebm();
+        }
+
+        ctrl.getTab()
 
         $timeout()
 
@@ -52,7 +65,7 @@ angular.module('myapp', ['ui.bootstrap'])
         <!-- Header -->
         <h4> Folders: </h4>
 
-        <!-- Folder Reapeater 
+        <!-- Folder Repeater 
         <div class="container">
           <div ng-repeat="bm in $ctrl.folders">
             {{bm.title}}
@@ -63,13 +76,10 @@ angular.module('myapp', ['ui.bootstrap'])
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
           <div class="form-group">
-            <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm for bm in folders | filter:$viewValue | limitTo:8" class="form-control">
+            <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
           </div>
-          <button class="btn btn-success" type="submit">Submit</button>
+          <button class="btn btn-success" type="submit" ng-click="$ctrl.savebm()">Submit</button>
         </div>
-
-        
-        
 
       </div>
     `
