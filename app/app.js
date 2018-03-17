@@ -1,8 +1,8 @@
-angular.module('myapp', [])
+angular.module('myapp', ['ui.bootstrap'])
 
   .component('main', {
 
-    controller(bookMarks, $timeout) {
+    controller(bookMarks, $timeout, $scope) {
       // Variables to track
       const ctrl = this;
       this.folders = [];
@@ -18,15 +18,28 @@ angular.module('myapp', [])
       // === Initialize ===
       this.$onInit = () => {
 
-        //Get selected tab
-        // chrome.tabs.getSelected(null, function(tab){
-        //   currentTab = tab;
-        //   inputTitle = currentTab.title
-        // })
+
+        // POSSIBLE NECESSARY TYPEAHEAD
+
+        // $('#the-basics .typeahead').typeahead({
+        //   hint: true,
+        //   highlight: true,
+        //   minLength: 1
+        // },
+        // {
+        //   name: 'states',
+        //   source: substringMatcher(states)
+        // });
+
+        
+      // END POSSIBLE NECESSARY TYPEAHEAD
 
         bookMarks.get((results)=>{
-          ctrl.folders = results;
-        });        
+          $scope.folders = results;
+          console.log($scope.folders)
+        });
+        
+        $scope.selected = undefined;
 
         $timeout()
 
@@ -42,13 +55,22 @@ angular.module('myapp', [])
         <!-- Folder Reaper -->
         <div class="container">
           <div ng-repeat="bm in $ctrl.folders">
-            {{bm.title}}
+            <!--{{bm.title}}-->
           </div>
-          <div custom-select="bm as bm.title for bm in $ctrl.folders" ng-model="$ctrl.searchKey"></div>
-          <button ng-click="">Save</button>
         </div>
 
 
+
+        <div class="container-fluid">
+        <pre>Model: {{selected | json}}</pre>
+          <div class="form-group">
+            <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm for bm in folders | filter:$viewValue | limitTo:8" class="form-control">
+          </div>
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+
+        
+        
 
       </div>
     `

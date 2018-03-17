@@ -19,10 +19,11 @@ angular.module('myapp')
 
       const getFolders = function(node){
         if (node.children){
-          results.push({
-            title: node.title,
-            id: node.id
-          })
+          // results.push({
+          //   title: node.title,
+          //   id: node.id
+          // })
+          results.push(node.title)
           node.children.forEach(function(node){
             getFolders(node);
           })
