@@ -1,7 +1,8 @@
 angular.module('hotmap')
+
   .component('settingsPanel', {
 
-    controller: function (bookMarks, userSettings, $scope) {
+    controller(bookMarks, userSettings, $scope) {
 
       const panel = this;
       
@@ -20,12 +21,10 @@ angular.module('hotmap')
 
         bookMarks.get( results => {
           $scope.folders = results;
-          // console.log('current folders are: ', $scope.folders);
         });
 
         userSettings.get( results => {
           $scope.settings = results;
-          // console.log('current scope is: ', $scope.settings);
         })
 
       }

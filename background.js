@@ -1,6 +1,6 @@
 chrome.commands.onCommand.addListener( command => {
-  let preset = command[6];
   let store = {};
+  let preset = command[6];
 
   chrome.storage.sync.get(null, result => {
     console.log('The current keys are: ', result)

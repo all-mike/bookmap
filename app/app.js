@@ -25,19 +25,18 @@ angular.module('hotmap', ['ui.bootstrap'])
       }
 
       // Title & Url grabbing logic
-      this.getTab = cb => {
+      this.getTab = () => {
         return chrome.tabs.getSelected(null, tab => {
-          // console.log('the current tab is: ', tab);
           $scope.currentTab = tab.url;
           $scope.currentTitle = tab.title;
         })
       } 
 
       // Temporary test features
-      this.testMod = event => {
-        console.log('test-inspection: ', event)
+      // this.testMod = event => {
+      //   console.log('test-inspection: ', event)
         // console.log('test-inspection: value', event.value)
-      }
+      // }
 
       // === Initialize ===
       this.$onInit = () => {
@@ -47,7 +46,6 @@ angular.module('hotmap', ['ui.bootstrap'])
         // Build folders for autocomplete
         bookMarks.get( results => {
           $scope.folders = results;
-          // console.log('the current folders are: ', $scope.folders)
         });
         
         // Scope wide listener for enter presses
@@ -67,7 +65,6 @@ angular.module('hotmap', ['ui.bootstrap'])
     template: 
     `
       <div class="papa">
-        <!-- Header -->
         <h4>Folders: </h4>
 
         <div class="container-fluid">
