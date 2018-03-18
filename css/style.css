@@ -9,8 +9,30 @@
 
 h4{
   margin-left: 20px;
+  font-size: 14px;
 }
 
 #widebutt{
   width: 100%;
+}
+
+#cog{
+  font-size: 13px !important;
+  margin-left: -1px;
+  margin-top: -1px;
+}
+
+#cogbutt{
+  height: 20px !important;
+  width: 20px !important;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+#rightlean{
+  text-align: right;
 }
