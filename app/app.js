@@ -69,11 +69,21 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
+
           <div class="form-group">
             <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
           </div>
-          <button class="btn btn-success" type="submit" ng-click="$ctrl.savebm()">Submit</button>
-          <button class="btn btn-success" type="viewchange" ng-click="openpanel = !openpanel">Settings</button>
+
+          <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+              <button class="btn btn-primary" type="submit" ng-click="$ctrl.savebm()">Submit</button>
+            </div>
+            <div class="btn-group" role="group">
+              <button class="btn btn-primary" type="viewchange" ng-click="openpanel = !openpanel">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings
+              </button>
+            </div>
+          </div>
 
           <div class="settings-panel" ng-if="openpanel">
             <settings-panel></settings-panel>
