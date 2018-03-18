@@ -77,7 +77,7 @@ angular.module('hotmap', ['ui.bootstrap'])
     `
       <div class="papa">
         <!-- Header -->
-        <h4> Folders: </h4>
+        <h4>Folders: </h4>
 
         <!-- Folder Repeater -->
         <!-- <div ng-repeat="bm in $ctrl.folders">
