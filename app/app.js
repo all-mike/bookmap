@@ -70,11 +70,6 @@ angular.module('hotmap', ['ui.bootstrap'])
         <!-- Header -->
         <h4>Folders: </h4>
 
-        <!-- Folder Repeater -->
-        <!-- <div ng-repeat="bm in $ctrl.folders">
-          {{bm.title}}
-        </div>-->
-
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
           <div class="form-group">
