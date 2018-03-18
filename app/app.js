@@ -1,8 +1,8 @@
-angular.module('myapp', ['ui.bootstrap'])
+angular.module('hotmap', ['ui.bootstrap'])
 
-  .component('main', {
+  .component('popup', {
 
-    controller(bookMarks, settings, $timeout, $scope) {
+    controller(bookMarks, userSettings, $timeout, $scope) {
       // Variables to track
       const ctrl = this;
       this.folders = [];
@@ -27,7 +27,7 @@ angular.module('myapp', ['ui.bootstrap'])
       // Title & Url grabbing logic
       this.getTab = cb => {
         return chrome.tabs.getSelected(null, tab => {
-          console.log('the current tab is: ', tab);
+          // console.log('the current tab is: ', tab);
           $scope.currentTab = tab.url;
           $scope.currentTitle = tab.title;
         })
@@ -45,15 +45,16 @@ angular.module('myapp', ['ui.bootstrap'])
         // Build folders for autocomplete
         bookMarks.get( results => {
           $scope.folders = results;
-          console.log('the current folders are: ', $scope.folders)
+          // console.log('the current folders are: ', $scope.folders)
         });
         
         // Check store for user settings
-        settings.init( results => {
-          $scope.settings = results;
-          $scope.selected = undefined;
-          console.log('the current settings are: ', $scope.settings)
-        });
+        // userSettings.init( results => {
+        //   $scope.settings = results;
+        //   $scope.selected = undefined;
+        //   $scope.openpanel = false;
+        //   console.log('the current settings are: ', $scope.settings)
+        // });
         
         // Scope wide listener for enter presses
         $scope.keydown = () => {
@@ -78,13 +79,10 @@ angular.module('myapp', ['ui.bootstrap'])
         <!-- Header -->
         <h4> Folders: </h4>
 
-        <!-- Folder Repeater 
-        <div class="container">
-          <div ng-repeat="bm in $ctrl.folders">
-            {{bm.title}}
-          </div>
-        </div>
-        -->
+        <!-- Folder Repeater -->
+        <!-- <div ng-repeat="bm in $ctrl.folders">
+          {{bm.title}}
+        </div>-->
 
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
@@ -92,6 +90,11 @@ angular.module('myapp', ['ui.bootstrap'])
             <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
           </div>
           <button class="btn btn-success" type="submit" ng-click="$ctrl.savebm()">Submit</button>
+          <button class="btn btn-success" type="viewchange" ng-click="openpanel = !openpanel">Settings</button>
+
+          <div class="settings-panel" ng-if="openpanel">
+            <settings-panel></settings-panel>
+          </div>
         </div>
 
       </div>

@@ -1,4 +1,4 @@
-angular.module('myapp')
+angular.module('hotmap')
 
   .factory('bookMarks', () => {
     

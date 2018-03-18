@@ -1,4 +1,8 @@
 .papa{
   width: 250px;
-  height: 350px;
+  height: 200px;
+}
+
+.settings-panel{
+  height: 300px;
 }

@@ -1,10 +1,10 @@
-angular.module('myapp')
+angular.module('hotmap')
 
-  .factory('settings', function(){
+  .factory('userSettings', () => {
     var settings = {};
 
-    settings.init = (cb) => {
-      chrome.storage.sync.get(['key'], result => {
+    settings.init = (set, cb) => {
+      chrome.storage.sync.get([set], result => {
         console.log('Value currently is ' + result);
         console.log('Current keys are: ', Object.entries(result))
         cb(Object.entries(result));
