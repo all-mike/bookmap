@@ -42,6 +42,8 @@ angular.module('hotmap', ['ui.bootstrap'])
       // === Initialize ===
       this.$onInit = () => {
 
+        $scope.openpanel = true;
+
         // Build folders for autocomplete
         bookMarks.get( results => {
           $scope.folders = results;

@@ -33,7 +33,7 @@ angular.module('hotmap')
     }
 
     bmstore.save = (parentId, title, url) => {
-      console.log('trying to create: ', parentId, title, url)
+      console.log('trying to create bm with: ', parentId, title, url)
       chrome.bookmarks.create({
         parentId,
         title,

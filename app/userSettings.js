@@ -1,26 +1,20 @@
 angular.module('hotmap')
 
   .factory('userSettings', () => {
-    var settings = {};
+    
+    const settings = {};
 
-    settings.init = (set, cb) => {
-      chrome.storage.sync.get([set], result => {
-        console.log('Value currently is ' + result);
-        console.log('Current keys are: ', Object.entries(result))
-        cb(Object.entries(result));
+    settings.save = (obj) => {
+      console.log('the folder obj is ', obj)
+      chrome.storage.sync.set({store: obj}, () => {
+        console.log('The storage obj is set to ' + obj);
       });
     }
 
-    settings.set = (key, value) => {
-      chrome.storage.sync.set({key: value}, () => {
-        console.log('The ', key, ' key is set to ' + value);
-      });
-    }
-
-    settings.refresh = (key) => {
-      chrome.storage.sync.get(['key'], result => {
-        console.log('Value currently is ' + result.key);
-        // console.log('current keys are ', Object.entries(result))
+    settings.get = (cb) => {
+      chrome.storage.sync.get(null, result => {
+        console.log('My guess at the key is: ', result)
+        cb(result.store)
       });
     }
 
