@@ -65,7 +65,7 @@ angular.module('hotmap', ['ui.bootstrap'])
     template: 
     `
       <div class="papa">
-        <h4>Folders: </h4>
+        <div class="panel-heading">Destination:</div>
 
         <div class="container-fluid">
         <pre>Model: {{selected | json}}</pre>
