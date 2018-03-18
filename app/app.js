@@ -31,7 +31,7 @@ angular.module('hotmap', ['ui.bootstrap'])
           $scope.currentTab = tab.url;
           $scope.currentTitle = tab.title;
         })
-      }
+      } 
 
       // Temporary test features
       this.testMod = event => {
@@ -50,21 +50,10 @@ angular.module('hotmap', ['ui.bootstrap'])
           // console.log('the current folders are: ', $scope.folders)
         });
         
-        // Check store for user settings
-        // userSettings.init( results => {
-        //   $scope.settings = results;
-        //   $scope.selected = undefined;
-        //   $scope.openpanel = false;
-        //   console.log('the current settings are: ', $scope.settings)
-        // });
-        
         // Scope wide listener for enter presses
         $scope.keydown = () => {
           ctrl.savebm();
         }
-
-        //settings factory usage example
-        //settings.set('init', 'yes')
 
         //to consider: possible future issue regarding tab grabbing while minified
         ctrl.getTab()

@@ -25,21 +25,21 @@
       "suggested_key": {
         "windows": "Alt+1"
       },
-      "description": "Quick-folder 1",
+      "description": "Quick-save folder 1",
       "global": true
     },
     "mapkey2": {
       "suggested_key": {
         "windows": "Alt+2"
       },
-      "description": "Quick-folder 2",
+      "description": "Quick-save folder 2",
       "global": true
     },    
     "mapkey3": {
       "suggested_key": {
         "windows": "Alt+3"
       },
-      "description": "Quick-folder 3",
+      "description": "Quick-save folder 3",
       "global": true
     }
   },
