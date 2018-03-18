@@ -10,8 +10,8 @@
     "storage"
   ],
   "browser_action": {
-      "default_title": "Bookmap // Hotmark",
-      "default_icon": "icons/tabby.png",
+      "default_title": "Hot-Map",
+      "default_icon": "icons/hotmap.png",
       "default_popup": "index.html"
   },
   "background": {
