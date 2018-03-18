@@ -2,7 +2,7 @@ angular.module('myapp', ['ui.bootstrap'])
 
   .component('main', {
 
-    controller(bookMarks, $timeout, $scope) {
+    controller(bookMarks, settings, $timeout, $scope) {
       // Variables to track
       const ctrl = this;
       this.folders = [];
@@ -12,48 +12,61 @@ angular.module('myapp', ['ui.bootstrap'])
       // Variables for new input
       this.searchKey = '';
 
-      // Autocomplete logic
-      this.autocomp = function(){}
-
       // Bookmark saving logic
       this.savebm = () => {
         ctrl.getTab()
-        chrome.bookmarks.create({
-          parentId: $scope.selected.id,
-          title: $scope.currentTitle,
-          url: $scope.currentTab});
-        window.close();
+        bookMarks.save(
+          $scope.selected.id,
+          $scope.currentTitle,
+          $scope.currentTab
+        );
+        // autoclose, disabled for easier testing
+        // window.close();
       }
 
-      this.getTab = () => {
-        return chrome.tabs.getSelected(null, function(tab){
-          console.log(tab);
+      // Title & Url grabbing logic
+      this.getTab = cb => {
+        return chrome.tabs.getSelected(null, tab => {
+          console.log('the current tab is: ', tab);
           $scope.currentTab = tab.url;
           $scope.currentTitle = tab.title;
         })
       }
 
-      this.testMod = (event) => {
+      // Temporary test features
+      this.testMod = event => {
         console.log('test-inspection: ', event)
-        console.log('test-inspection: value', event.value)
+        // console.log('test-inspection: value', event.value)
       }
 
       // === Initialize ===
       this.$onInit = () => {
 
-        bookMarks.get((results)=>{
+        // Build folders for autocomplete
+        bookMarks.get( results => {
           $scope.folders = results;
-          console.log($scope.folders)
+          console.log('the current folders are: ', $scope.folders)
         });
         
-        $scope.selected = undefined;
-
-        $scope.keydown = function() {
+        // Check store for user settings
+        settings.init( results => {
+          $scope.settings = results;
+          $scope.selected = undefined;
+          console.log('the current settings are: ', $scope.settings)
+        });
+        
+        // Scope wide listener for enter presses
+        $scope.keydown = () => {
           ctrl.savebm();
         }
 
+        //settings factory usage example
+        //settings.set('init', 'yes')
+
+        //to consider: possible future issue regarding tab grabbing while minified
         ctrl.getTab()
 
+        //important for lifehook cycle
         $timeout()
 
       };
