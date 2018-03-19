@@ -32,11 +32,23 @@ angular.module('hotmap', ['ui.bootstrap'])
         });
       }
 
-      // === Initialize ===
+      this.updateTheme = classname => {
+        let body = angular.element(document).find('body');
+        body.removeClass();
+        body.addClass(classname);
+        $timeout();
+      }
+
+      this.toggleTheme = () => {
+        let body = angular.element(document).find('body');
+        body[0].className == 'light-mode'? ctrl.updateTheme('dark-mode') : ctrl.updateTheme('light-mode');
+      }
+
       this.$onInit = () => {
 
         ctrl.getBookmarks();
-        ctrl.getTab()
+        ctrl.updateTheme('dark-mode');
+        ctrl.getTab();
         
         $scope.openpanel = false;
 
@@ -57,7 +69,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         <div class="row" >
 
           <div class="col-xs-8">
-            <h4  ng-if="!openpanel">Choose destination...</h4>
+            <h4 ng-if="!openpanel">Choose destination...</h4>
           </div>
 
           <div class="col-xs-4" id="rightlean">
@@ -71,14 +83,16 @@ angular.module('hotmap', ['ui.bootstrap'])
         <div class="container-fluid">
 
           <!-- TESTER / SOMETHING ISN'T WORKING: <pre>Model: {{selected | json}}</pre> -->
-
           <div class="input-group"  ng-if="!openpanel">
-            <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
+            <inputfield>
+              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
+            </inputfield>
             <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
 
           <div class="settings-panel" ng-if="openpanel">
             <settings-panel></settings-panel>
+            <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Theme toggle</button>
           </div>
 
         </div>

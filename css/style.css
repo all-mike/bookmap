@@ -37,3 +37,18 @@ h4{
 #rightlean{
   text-align: right;
 }
+
+
+
+.dark-mode {
+  background-color: #2D2D2D;
+  color: #b9b9b9 !important;
+}
+
+.dark-mode input, textarea{
+  background-color: #3B3B3B !important;
+}
+
+.light-mode {
+  background-color: #F3F3F3;
+}
