@@ -1,6 +1,10 @@
 .motherdom{
   width: 250px;
-  height: 130px;
+  height: 80px;
+}
+
+.papapanel{
+  margin-top: -14px;
 }
 
 .settings-panel{

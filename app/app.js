@@ -3,16 +3,11 @@ angular.module('hotmap', ['ui.bootstrap'])
   .component('popup', {
 
     controller(bookMarks, userSettings, $timeout, $scope) {
-      // Variables to track
+
       const ctrl = this;
       this.folders = [];
-      this.fview = 1;
       this.currentTab = '';
 
-      // Variables for new input
-      this.searchKey = '';
-
-      // Bookmark saving logic
       this.savebm = () => {
         ctrl.getTab()
         bookMarks.save(
@@ -20,11 +15,10 @@ angular.module('hotmap', ['ui.bootstrap'])
           $scope.currentTitle,
           $scope.currentTab
         );
-        // autoclose, disabled for easier testing
-        // window.close();
+        // autoclose, disable for easier testing
+        window.close();
       }
 
-      // Title & Url grabbing logic
       this.getTab = () => {
         return chrome.tabs.getSelected(null, tab => {
           $scope.currentTab = tab.url;
@@ -44,7 +38,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         ctrl.getBookmarks();
         ctrl.getTab()
         
-        $scope.openpanel = true;
+        $scope.openpanel = false;
 
         $scope.keydown = () => {
           ctrl.savebm();
@@ -60,10 +54,10 @@ angular.module('hotmap', ['ui.bootstrap'])
     `
       <div class="motherdom">
 
-        <div class="row">
+        <div class="row" >
 
           <div class="col-xs-8">
-            <h4>Choose destination...</h4>
+            <h4  ng-if="!openpanel">Choose destination...</h4>
           </div>
 
           <div class="col-xs-4" id="rightlean">
@@ -76,9 +70,9 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="container-fluid">
 
-          <pre>Model: {{selected | json}}</pre>
+          <!-- TESTER / SOMETHING ISN'T WORKING: <pre>Model: {{selected | json}}</pre> -->
 
-          <div class="input-group">
+          <div class="input-group"  ng-if="!openpanel">
             <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
             <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
