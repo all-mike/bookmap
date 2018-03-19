@@ -49,10 +49,22 @@ h4{
 
 .dark-mode input, textarea{
   background-color: #3B3B3B !important;
+  color: #b9b9b9;
 }
 
 .dark-mode .dropdown-menu{
   background-color: #9b9b9b !important;
+}
+
+.dark-mode .form-control::-moz-placeholder {
+  color: #B6B600;
+  opacity: 1;
+}
+.dark-mode .form-control:-ms-input-placeholder {
+  color: #B6B600;
+}
+.dark-mode .form-control::-webkit-input-placeholder {
+  color: #B6B600;
 }
 
 .light-mode {

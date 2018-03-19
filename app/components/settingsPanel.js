@@ -44,8 +44,10 @@ angular.module('hotmap')
         for (let i = 0 ; i < temparr.length; i++){
           $scope.settings[i] = temparr[i][1]
         }
-        let removedindex = temparr.length++
+        let removedindex = temparr.length;
+        console.log('the removed index will be: ', removedindex)
         $scope.settings[removedindex] = undefined;
+        console.log('The settings before a save are: ', $scope.settings)
         userSettings.save($scope.settings)
         userSettings.get( results => {
           $scope.settings = results;
