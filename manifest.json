@@ -41,6 +41,13 @@
       },
       "description": "Quick-save folder 3",
       "global": true
+    },
+    "mapkey4": {
+      "suggested_key": {
+        "windows": "Alt+4"
+      },
+      "description": "Quick-save folder 4",
+      "global": true
     }
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'"

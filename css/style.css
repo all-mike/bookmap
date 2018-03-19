@@ -57,14 +57,14 @@ h4{
 }
 
 .dark-mode .form-control::-moz-placeholder {
-  color: rgb(71, 71, 71);
+  color: rgb(109, 109, 109);
   opacity: 1;
 }
 .dark-mode .form-control:-ms-input-placeholder {
-  color: rgb(71, 71, 71);
+  color: rgb(109, 109, 109);
 }
 .dark-mode .form-control::-webkit-input-placeholder {
-  color: rgb(71, 71, 71);
+  color: rgb(109, 109, 109);
 }
 
 .light-mode {

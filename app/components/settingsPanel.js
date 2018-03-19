@@ -107,6 +107,18 @@ angular.module('hotmap')
           </div>
         </div>
 
+        <div ng-if="settings[3]">
+          <small>mapped folder 4</small>
+          <div class="input-group">
+          <input name="folders" id="folders" type="text" placeholder="hotkey 4" ng-model="settings[4]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('4')">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+          </span>
+        </div>
+      </div>
+
         <small>&nbsp</small>
         
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">Hotkey-bindings</button>
