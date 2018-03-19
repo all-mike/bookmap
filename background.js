@@ -8,15 +8,15 @@ chrome.commands.onCommand.addListener( command => {
     store = result.store
     chrome.tabs.getSelected(null, tab => {
       if (store[preset] == undefined){
-        console.log('undefined preset!')
+        console.log('undefined preset! cancelling save.')
         return;
       }
       chrome.bookmarks.create({
         parentId: store[preset].id,
         title: tab.title,
         url: tab.url
-      }, function( BookmarkTreeNode ){
-        console.log('the treendoe doe: ', BookmarkTreeNode);
+      }, tree => {
+        console.log('the tree of bm doe: ', tree);
       });
     })
   });

@@ -9,6 +9,7 @@ angular.module('hotmap', ['ui.bootstrap'])
 
       this.savebm = () => {
         ctrl.getTab()
+        console.log($scope.selected)
         bookMarks.save(
           $scope.selected.id,
           $scope.currentTitle,
@@ -94,11 +95,9 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="container-fluid">
 
-          <!-- TESTER / SOMETHING ISN'T WORKING: <pre>Model: {{selected | json}}</pre> -->
+          <!--<pre>Model: {{selected | json}}</pre>-->
           <div class="input-group"  ng-if="!openpanel">
-            <inputfield>
-              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
-            </inputfield>
+            <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
             <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
 
