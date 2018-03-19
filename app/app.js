@@ -32,12 +32,6 @@ angular.module('hotmap', ['ui.bootstrap'])
         })
       } 
 
-      // Temporary test features
-      // this.testMod = event => {
-      //   console.log('test-inspection: ', event)
-        // console.log('test-inspection: value', event.value)
-      // }
-
       // === Initialize ===
       this.$onInit = () => {
 
@@ -64,37 +58,35 @@ angular.module('hotmap', ['ui.bootstrap'])
 
     template: 
     `
-      <div class="papa">
+      <div class="motherdom">
 
-      <div class="row">
-          <div class="col-xs-6">
-            <h4>Destination:</h4>
+        <div class="row">
+
+          <div class="col-xs-8">
+            <h4>Choose destination...</h4>
           </div>
-          <div class="col-xs-6" id="rightlean">
+
+          <div class="col-xs-4" id="rightlean">
             <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="openpanel = !openpanel">
               <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
             </button>
           </div>
+
         </div>
 
         <div class="container-fluid">
-        <pre>Model: {{selected | json}}</pre>
+
+          <pre>Model: {{selected | json}}</pre>
 
           <div class="input-group">
             <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm()" autofocus>
             <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
 
-          <!--<div class="btn-group" role="group">
-            <button class="btn btn-primary" type="submit" ng-click="$ctrl.savebm()">Submit</button>
-          </div>-->
-          <div class="btn-group" role="group">
-
-          </div>
-
           <div class="settings-panel" ng-if="openpanel">
             <settings-panel></settings-panel>
           </div>
+
         </div>
 
       </div>
