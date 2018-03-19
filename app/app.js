@@ -6,7 +6,6 @@ angular.module('hotmap', ['ui.bootstrap'])
 
       const ctrl = this;
       this.folders = [];
-      this.currentTab = '';
 
       this.savebm = () => {
         ctrl.getTab()
@@ -32,24 +31,37 @@ angular.module('hotmap', ['ui.bootstrap'])
         });
       }
 
+      this.getTheme = () => {
+        userSettings.singleget('theme', (result) => {
+          $scope.theme = result.theme || 'light-mode'
+          ctrl.updateTheme(result.theme);
+        })
+      }
+
+      this.toggleTheme = () => {
+        if ($scope.theme == 'light-mode'){
+          ctrl.updateTheme('dark-mode');
+          userSettings.singlesave('theme', 'dark-mode');
+        } else {
+          ctrl.updateTheme('light-mode');
+          userSettings.singlesave('theme', 'light-mode');
+        }
+      }
+
       this.updateTheme = classname => {
+        $scope.theme = classname;
         let body = angular.element(document).find('body');
         body.removeClass();
         body.addClass(classname);
         $timeout();
       }
 
-      this.toggleTheme = () => {
-        let body = angular.element(document).find('body');
-        body[0].className == 'light-mode'? ctrl.updateTheme('dark-mode') : ctrl.updateTheme('light-mode');
-      }
-
       this.$onInit = () => {
 
         ctrl.getBookmarks();
-        ctrl.updateTheme('dark-mode');
+        ctrl.getTheme();
         ctrl.getTab();
-        
+
         $scope.openpanel = false;
 
         $scope.keydown = () => {
@@ -91,8 +103,7 @@ angular.module('hotmap', ['ui.bootstrap'])
           </div>
 
           <div class="settings-panel" ng-if="openpanel">
-            <settings-panel></settings-panel>
-            <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Theme toggle</button>
+            <settings-panel toggle-theme="$ctrl.toggleTheme()"></settings-panel>
           </div>
 
         </div>
