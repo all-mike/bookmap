@@ -38,7 +38,9 @@ h4{
   text-align: right;
 }
 
-
+.dropdown-menu{
+  width: 100%;
+}
 
 .dark-mode {
   background-color: #2D2D2D;
@@ -47,6 +49,10 @@ h4{
 
 .dark-mode input, textarea{
   background-color: #3B3B3B !important;
+}
+
+.dark-mode .dropdown-menu{
+  background-color: #9b9b9b !important;
 }
 
 .light-mode {
