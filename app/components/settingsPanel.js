@@ -17,6 +17,18 @@ angular.module('hotmap')
         });
       };
 
+      this.getSettings = () => {
+        userSettings.get( results => {
+          $scope.settings = results;
+        })
+      }
+
+      this.getBookmarks = () => {
+        bookMarks.get( results => {
+          $scope.folders = results;
+        });
+      }
+
       this.removeKey = index => {
         let tempkeys = Object.entries($scope.settings);
         let temparr = [];
@@ -25,14 +37,11 @@ angular.module('hotmap')
             temparr.push([tempkeys[i][0], tempkeys[i][1]])
           }
         }
-        console.log(temparr);
         for (let i = 0 ; i < temparr.length; i++){
           $scope.settings[i] = temparr[i][1]
         }
-        let indont = temparr.length++
-        console.log($scope.settings[indont])
-        $scope.settings[indont] = undefined;
-        console.log($scope.settings[indont])
+        let removedindex = temparr.length++
+        $scope.settings[removedindex] = undefined;
         userSettings.save($scope.settings)
         userSettings.get( results => {
           $scope.settings = results;
@@ -42,14 +51,8 @@ angular.module('hotmap')
 
       this.$onInit = () => {
 
-        bookMarks.get( results => {
-          $scope.folders = results;
-        });
-
-        userSettings.get( results => {
-          $scope.settings = results;
-        })
-
+        panel.getBookmarks();
+        panel.getSettings();
         //important for lifehook cycle
         $timeout()
 

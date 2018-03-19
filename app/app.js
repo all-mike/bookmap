@@ -32,23 +32,23 @@ angular.module('hotmap', ['ui.bootstrap'])
         })
       } 
 
-      // === Initialize ===
-      this.$onInit = () => {
-
-        $scope.openpanel = true;
-
-        // Build folders for autocomplete
+      this.getBookmarks = () => {
         bookMarks.get( results => {
           $scope.folders = results;
         });
+      }
+
+      // === Initialize ===
+      this.$onInit = () => {
+
+        ctrl.getBookmarks();
+        ctrl.getTab()
         
-        // Scope wide listener for enter presses
+        $scope.openpanel = true;
+
         $scope.keydown = () => {
           ctrl.savebm();
         }
-
-        //to consider: possible future issue regarding tab grabbing while minified
-        ctrl.getTab()
 
         //important for lifehook cycle
         $timeout()
