@@ -122,7 +122,7 @@ angular.module('hotmap')
         <small>&nbsp</small>
         
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">Hotkey-bindings</button>
-        <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Theme toggle</button>
+        <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Toggle theme</button>
       </div>
     </div>
     `
