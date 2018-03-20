@@ -106,12 +106,12 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="row" >
 
-          <div class="col-xs-8">
+          <div class="col-xs-9">
             <h4 ng-if="!openpanel">Choose destination...</h4>
             <!--<h4 ng-if="openpanel">Settings</h4>-->
           </div>
       
-          <div class="col-xs-4" id="rightlean">
+          <div class="col-xs-3" id="rightlean">
             <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="openpanel = !openpanel">
               <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
             </button>
