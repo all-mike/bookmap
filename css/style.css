@@ -4,6 +4,7 @@
 }
 
 .papapanel{
+  margin-top:-12px
 }
 
 .settings-panel{
@@ -15,8 +16,20 @@ h4{
   font-size: 14px;
 }
 
-#widebutt{
-  width: 100%;
+.micro{
+  font-size: 8px;
+}
+
+#miniheader{
+  text-align:center !important;
+}
+
+#settingtoggle{
+  width: 14px !important;
+  text-align: center !important;
+  margin-left: -5px;
+  margin-right: 5px;
+  white-space: normal;
 }
 
 #cog{
@@ -31,6 +44,10 @@ h4{
   padding: 0px;
   margin-right: 5px;
   margin-top: 5px;
+}
+
+#widebutt{
+  width: 100%;
 }
 
 #rightlean{
@@ -70,6 +87,30 @@ h4{
   color: rgb(109, 109, 109);
 }
 
-.light-mode {
-  background-color: #F3F3F3;
+.dark-mode .btn-default{
+  background-color: rgb(42, 42, 42) !important;
+  color: #c4c4c4 !important;
 }
+
+.dark-mode .btn-primary{
+  background-color:#4B0082 !important;
+}
+
+.dark-mode input:focus, textarea:focus, button:focus {
+  outline: 0 none;
+}
+
+.btn-default{
+  text-align: left;
+}
+
+.light-mode {
+  background-color: rgb(255, 255, 255);
+}
+
+.light-mode .btn-default{
+  background-color: rgb(238, 238, 238) !important;
+}
+
+
+

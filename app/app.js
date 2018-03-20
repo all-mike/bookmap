@@ -20,17 +20,11 @@ angular.module('hotmap', ['ui.bootstrap'])
         })
       } 
 
-      this.getTheme = () => {
-        userSettings.singleget('theme', result => {
+      this.getOptions = () => {
+        userSettings.multiget( result => {
           $scope.theme = result.theme || 'light-mode'
-          ctrl.updateTheme(result.theme);
-        })
-      }
-
-      this.getOption = () => {
-        userSettings.singleget('option', result => {
           $scope.newfolderOption = result.option || true
-          console.log('the update settings is: ', $scope.newfolderOption)
+          ctrl.updateTheme(result.theme);
         })
       }
 
@@ -44,15 +38,15 @@ angular.module('hotmap', ['ui.bootstrap'])
         }
       }
 
-      this.toggleOption = () => {
-        if ($scope.newfolderOption){
-          $scope.newfolderOption = false;
-          userSettings.singlesave('option', false);
-        } else {
-          $scope.newfolderOption = true;
-          userSettings.singlesave('option', true)
-        }
-      }
+      // this.toggleOption = () => {
+      //   if ($scope.newfolderOption){
+      //     $scope.newfolderOption = false;
+      //     userSettings.singlesave('option', false);
+      //   } else {
+      //     $scope.newfolderOption = true;
+      //     userSettings.singlesave('option', true)
+      //   }
+      // }
 
       this.updateTheme = classname => {
         $scope.theme = classname;
@@ -94,9 +88,8 @@ angular.module('hotmap', ['ui.bootstrap'])
 
       this.$onInit = () => {
 
+        ctrl.getOptions();
         ctrl.getBookmarks();
-        ctrl.getTheme();
-        ctrl.getOption();
         ctrl.getTab();
 
         $scope.openpanel = false;
@@ -115,7 +108,7 @@ angular.module('hotmap', ['ui.bootstrap'])
 
           <div class="col-xs-8">
             <h4 ng-if="!openpanel">Choose destination...</h4>
-            <h4 ng-if="openpanel">Settings</h4>
+            <!--<h4 ng-if="openpanel">Settings</h4>-->
           </div>
       
           <div class="col-xs-4" id="rightlean">
@@ -134,10 +127,7 @@ angular.module('hotmap', ['ui.bootstrap'])
           </div>
 
           <div class="settings-panel" ng-if="openpanel">
-            <settings-panel 
-            toggle-theme="$ctrl.toggleTheme()"
-            toggle-options="$ctrl.toggleOptions()"
-            ></settings-panel>
+            <settings-panel></settings-panel>
           </div>
 
         </div>

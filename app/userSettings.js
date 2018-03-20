@@ -26,6 +26,12 @@ angular.module('hotmap')
       });
     }
 
+    settings.multiget = cb => {
+      chrome.storage.sync.get(['option', 'theme'], result => {
+        cb(result);
+      });
+    }
+
     return settings;
 
   })
