@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Hot-Map",
   "description": "Provides a multi folder hot-keyable bookmarker",
-  "version": "1.13",
+  "version": "1.14",
   "author": "Michael Walker, www.github.com/mdubbpro",
   "permissions": [
     "bookmarks",
@@ -11,7 +11,7 @@
   ],
   "browser_action": {
       "default_title": "Hot-Map",
-      "default_icon": "icons/hotmap.png",
+      "default_icon": "icons/favicon-96x96.png",
       "default_popup": "index.html"
   },
   "background": {
@@ -53,6 +53,11 @@
       "description": "Registered folder 3",
       "global": true
     }
+  },
+  "icons": {
+    "16":"icons/favicon-16x16.png",
+    "32":"icons/favicon-32x32.png",
+    "96":"icons/favicon-96x96.png"
   },
   "content_security_policy": "script-src 'self' 'unsafe-eval' https://ajax.googleapis.com; object-src 'self'"
 }
