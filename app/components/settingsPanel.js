@@ -71,7 +71,7 @@ angular.module('hotmap')
 
       <div class="form-group">
 
-        <div>
+        <div id="topentry">
           <small>mapped folder 1</small>
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey 1" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" autofocus>
