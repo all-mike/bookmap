@@ -48,17 +48,19 @@ angular.module('hotmap', ['ui.bootstrap'])
       this.savebm = (item) => {
         ctrl.getTab()
         if (item) {
-          bookMarks.save(
-            $scope.selected.id,
-            $scope.currentTitle,
-            $scope.currentTab
-          );
-          // autoclose, disable for easier testing
-          // window.close();
+          bookMarks.save($scope.selected.id, $scope.currentTitle, $scope.currentTab, success => {
+            // autoclose, disable for easier testing
+            // window.close();
+          });
         } else {
           let folders = angular.element(document).find('folders');
           let newtitle = folders.context.activeElement.value;
-          console.log('the newtitle would be: ', newtitle)
+          bookMarks.newfolder(newtitle, successobj=> {
+            bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
+              // autoclose, disable for easier testing
+              // window.close();
+            });
+          })
         }
       }
 

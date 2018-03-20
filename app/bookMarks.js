@@ -5,7 +5,6 @@ angular.module('hotmap')
     const bmstore = {};
 
     bmstore.get = cb => {
-
       let results = [];
 
       chrome.bookmarks.getTree( bmNodes => {
@@ -16,7 +15,6 @@ angular.module('hotmap')
           })
         }
       );
-
       const getFolders = node => {
         if (node.children){
           results.push({
@@ -28,16 +26,27 @@ angular.module('hotmap')
           })
         }
       }
-
       cb(results);
     }
 
-    bmstore.save = (parentId, title, url) => {
+    bmstore.save = (parentId, title, url, cb) => {
       console.log('trying to create bm with: ', parentId, title, url)
       chrome.bookmarks.create({
         parentId,
         title,
         url
+      }, success => {
+        cb(success)
+      });
+    }
+
+    bmstore.newfolder = (title, cb) => {
+      console.log('trying to create folder with: ', title)
+      chrome.bookmarks.create({
+        'parentId': '2',
+        'title': title
+      }, successobj => {
+        cb(successobj)
       });
     }
 
