@@ -38,16 +38,6 @@ angular.module('hotmap', ['ui.bootstrap'])
         }
       }
 
-      // this.toggleOption = () => {
-      //   if ($scope.newfolderOption){
-      //     $scope.newfolderOption = false;
-      //     userSettings.singlesave('option', false);
-      //   } else {
-      //     $scope.newfolderOption = true;
-      //     userSettings.singlesave('option', true)
-      //   }
-      // }
-
       this.updateTheme = classname => {
         $scope.theme = classname;
         let body = angular.element(document).find('body');
@@ -87,13 +77,10 @@ angular.module('hotmap', ['ui.bootstrap'])
       }
 
       this.selectFocus = () => {
-        console.log('assigning focus')
-
-        let ele = angular.element(document).find("foldersa")
-        console.log(ele);
-        ele.focus();
-        // document.getElementById('folders')
-        // document.getElementById("folders").focus();
+        let body = angular.element(document).find('body');
+        console.log(body)
+        let focuswrap = document.getElementById('foldersa');
+        console.log(focuswrap)
       }
 
       this.$onInit = () => {
@@ -101,12 +88,16 @@ angular.module('hotmap', ['ui.bootstrap'])
         ctrl.getOptions();
         ctrl.getBookmarks();
         ctrl.getTab();
-        $scope.$broadcast("focusTextInput");
+        ctrl.selectFocus();
 
         $scope.openpanel = false;
 
         //important for lifehook cycle
         $timeout()
+
+        $(document).ready(function(e) {
+          $("#folders").focus();
+        });
 
       };
     },
@@ -132,8 +123,8 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="container-fluid">
 
-          <div class="input-group"  ng-if="!openpanel" autofocus>
-              <input name="folders" id="foldersa" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)" auto-foc>
+          <div class="input-group"  ng-if="!openpanel">
+              <input class="anysing.focus()" name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)">
               <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
 
