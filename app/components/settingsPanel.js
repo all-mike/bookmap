@@ -7,8 +7,9 @@ angular.module('hotmap')
       const panel = this;
 
       this.getOptions = () => {
+        $scope.theme = 'light-mode'
         userSettings.multiget( result => {
-          $scope.theme = result.theme || 'light-mode'
+          $scope.theme = result.theme || $scope.theme
           $scope.newfolderOption = result.option || true
           panel.updateTheme(result.theme);
         })
@@ -106,7 +107,6 @@ angular.module('hotmap')
 
       this.$onInit = () => {
 
-        $scope.
         panel.getOptions();
         panel.getMapkeys();
         panel.getBookmarks();
@@ -182,7 +182,7 @@ angular.module('hotmap')
             <div class="input-group">
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleTheme()" width="100%">high contrast mode</button>
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleTheme()">
                   <div ng-if="theme =='dark-mode'" id="settingtoggle"> ON </div>
                   <div ng-if="theme !=='dark-mode'" id="settingtoggle"> OFF </div>
                 </button>
@@ -197,7 +197,7 @@ angular.module('hotmap')
             <div class="input-group">
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleOption()" width="100%">create new folders</button>
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button">
+                <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleOption()">
                   <div ng-if="newfolderOption" id="settingtoggle"> ON </div>
                   <div ng-if="!newfolderOption" id="settingtoggle"> OFF </div>
                 </button>
