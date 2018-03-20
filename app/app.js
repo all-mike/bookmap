@@ -86,11 +86,22 @@ angular.module('hotmap', ['ui.bootstrap'])
         }
       }
 
+      this.selectFocus = () => {
+        console.log('assigning focus')
+
+        let ele = angular.element(document).find("foldersa")
+        console.log(ele);
+        ele.focus();
+        // document.getElementById('folders')
+        // document.getElementById("folders").focus();
+      }
+
       this.$onInit = () => {
 
         ctrl.getOptions();
         ctrl.getBookmarks();
         ctrl.getTab();
+        $scope.$broadcast("focusTextInput");
 
         $scope.openpanel = false;
 
@@ -121,8 +132,8 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         <div class="container-fluid">
 
-          <div class="input-group"  ng-if="!openpanel">
-              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)" autofocus>
+          <div class="input-group"  ng-if="!openpanel" autofocus>
+              <input name="folders" id="foldersa" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)" auto-foc>
               <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
 
