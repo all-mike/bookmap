@@ -4,6 +4,7 @@ angular.module('hotmap')
 
     bindings: {
       toggleTheme: '&',
+      toggleOption: '&',
     },
 
     controller(bookMarks, userSettings, $scope, $timeout) {
@@ -142,6 +143,7 @@ angular.module('hotmap')
         
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">Hotkey-bindings</button>
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Toggle theme</button>
+        <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleOption()">Toggle folder saving</button>
       </div>
     </div>
     `

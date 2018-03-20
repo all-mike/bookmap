@@ -13,6 +13,13 @@ angular.module('hotmap', ['ui.bootstrap'])
         });
       }
 
+      this.getTab = () => {
+        chrome.tabs.getSelected(null, tab => {
+          $scope.currentTab = tab.url;
+          $scope.currentTitle = tab.title;
+        })
+      } 
+
       this.getTheme = () => {
         userSettings.singleget('theme', result => {
           $scope.theme = result.theme || 'light-mode'
@@ -20,12 +27,12 @@ angular.module('hotmap', ['ui.bootstrap'])
         })
       }
 
-      this.getTab = () => {
-        chrome.tabs.getSelected(null, tab => {
-          $scope.currentTab = tab.url;
-          $scope.currentTitle = tab.title;
+      this.getOption = () => {
+        userSettings.singleget('option', result => {
+          $scope.newfolderOption = result.option || true
+          console.log('the update settings is: ', $scope.newfolderOption)
         })
-      } 
+      }
 
       this.toggleTheme = () => {
         if ($scope.theme == 'light-mode'){
@@ -34,6 +41,16 @@ angular.module('hotmap', ['ui.bootstrap'])
         } else {
           ctrl.updateTheme('light-mode');
           userSettings.singlesave('theme', 'light-mode');
+        }
+      }
+
+      this.toggleOption = () => {
+        if ($scope.newfolderOption){
+          $scope.newfolderOption = false;
+          userSettings.singlesave('option', false);
+        } else {
+          $scope.newfolderOption = true;
+          userSettings.singlesave('option', true)
         }
       }
 
@@ -49,18 +66,22 @@ angular.module('hotmap', ['ui.bootstrap'])
         ctrl.getTab()
         if (item) {
           bookMarks.save($scope.selected.id, $scope.currentTitle, $scope.currentTab, success => {
-            // autoclose, disable for easier testing
             // window.close();
           });
         } else {
           let folders = angular.element(document).find('folders');
           let newtitle = folders.context.activeElement.value;
-          bookMarks.newfolder(newtitle, successobj=> {
-            bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
-              // autoclose, disable for easier testing
-              // window.close();
-            });
-          })
+          if ($scope.newfolderOption){
+            bookMarks.newfolder(newtitle, successobj=> {
+              bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
+                console.log('made a new folder!!')
+                // window.close();
+              });
+            })
+          } else {
+            console.log('your option is switched off.')
+            // window.close();
+          }
         }
       }
 
@@ -75,6 +96,7 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         ctrl.getBookmarks();
         ctrl.getTheme();
+        ctrl.getOption();
         ctrl.getTab();
 
         $scope.openpanel = false;
@@ -112,7 +134,10 @@ angular.module('hotmap', ['ui.bootstrap'])
           </div>
 
           <div class="settings-panel" ng-if="openpanel">
-            <settings-panel toggle-theme="$ctrl.toggleTheme()"></settings-panel>
+            <settings-panel 
+            toggle-theme="$ctrl.toggleTheme()"
+            toggle-options="$ctrl.toggleOptions()"
+            ></settings-panel>
           </div>
 
         </div>
