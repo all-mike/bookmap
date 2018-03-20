@@ -23,30 +23,34 @@
   "commands": {
     "mapkey1": {
       "suggested_key": {
-        "windows": "Alt+1"
+        "windows": "Alt+1",
+        "default": "Alt+1"
       },
-      "description": "Quick-save folder 1",
+      "description": "Registered folder 0",
       "global": true
     },
     "mapkey2": {
       "suggested_key": {
-        "windows": "Alt+2"
+        "windows": "Alt+2",
+        "default": "Alt+2"
       },
-      "description": "Quick-save folder 2",
+      "description": "Registered folder 1",
       "global": true
     },    
     "mapkey3": {
       "suggested_key": {
-        "windows": "Alt+3"
+        "windows": "Alt+3",
+        "default": "Alt+3"
       },
-      "description": "Quick-save folder 3",
+      "description": "Registered folder 2",
       "global": true
     },
     "mapkey4": {
       "suggested_key": {
-        "windows": "Alt+4"
+        "windows": "Alt+4",
+        "default": "Alt+4"
       },
-      "description": "Quick-save folder 4",
+      "description": "Registered folder 3",
       "global": true
     }
   },

@@ -14,7 +14,7 @@ angular.module('hotmap', ['ui.bootstrap'])
       }
 
       this.getTheme = () => {
-        userSettings.singleget('theme', (result) => {
+        userSettings.singleget('theme', result => {
           $scope.theme = result.theme || 'light-mode'
           ctrl.updateTheme(result.theme);
         })
@@ -64,11 +64,9 @@ angular.module('hotmap', ['ui.bootstrap'])
         }
       }
 
-
-      this.checkSubmit = ($event) => {
+      this.checkSubmit = $event => {
         let keyCode = $event.keyCode;
         if (keyCode === 13){
-          console.log('enter was hit!')
           ctrl.savebm();
         }
       }

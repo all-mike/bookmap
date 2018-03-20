@@ -92,8 +92,7 @@ angular.module('hotmap')
 
       <div class="form-group">
 
-        <div id="topentry">
-          <small>mapped folder 1</small>
+        <div>
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey 1" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" autofocus>
             <span class="input-group-btn">
@@ -102,10 +101,10 @@ angular.module('hotmap')
               </button>
             </span>
           </div>
+          <small>mapped folder 1</small>
         <div>
 
         <div ng-if="settings[1]">
-          <small>mapped folder 2</small>
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey 2" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
             <span class="input-group-btn">
@@ -114,10 +113,10 @@ angular.module('hotmap')
               </button>
             </span>
           </div>
+          <small>mapped folder 2</small>
         </div>
 
         <div ng-if="settings[2]">
-          <small>mapped folder 3</small>
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey 3" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
             <span class="input-group-btn">
@@ -126,10 +125,10 @@ angular.module('hotmap')
               </button>
             </span>
           </div>
+          <small>mapped folder 3</small>
         </div>
 
         <div ng-if="settings[3]">
-          <small>mapped folder 4</small>
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey 4" ng-model="settings[4]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
           <span class="input-group-btn">
@@ -138,9 +137,8 @@ angular.module('hotmap')
             </button>
           </span>
         </div>
+        <small>mapped folder 4</small>
       </div>
-
-        <small>&nbsp</small>
         
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">Hotkey-bindings</button>
         <button class="btn btn-primary" id="widebutt" ng-click="$ctrl.toggleTheme()">Toggle theme</button>

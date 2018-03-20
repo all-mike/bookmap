@@ -4,7 +4,6 @@
 }
 
 .papapanel{
-  margin-top: -14px;
 }
 
 .settings-panel{
@@ -21,14 +20,14 @@ h4{
 }
 
 #cog{
-  font-size: 13px !important;
+  font-size: 16px !important;
   margin-left: -1px;
-  margin-top: -1px;
+  margin-top: 1px;
 }
 
 #cogbutt{
-  height: 20px !important;
-  width: 20px !important;
+  height: 22px !important;
+  width: 22px !important;
   padding: 0px;
   margin-right: 5px;
   margin-top: 5px;

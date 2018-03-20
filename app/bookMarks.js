@@ -30,7 +30,6 @@ angular.module('hotmap')
     }
 
     bmstore.save = (parentId, title, url, cb) => {
-      console.log('trying to create bm with: ', parentId, title, url)
       chrome.bookmarks.create({
         parentId,
         title,
@@ -41,7 +40,6 @@ angular.module('hotmap')
     }
 
     bmstore.newfolder = (title, cb) => {
-      console.log('trying to create folder with: ', title)
       chrome.bookmarks.create({
         'parentId': '2',
         'title': title
