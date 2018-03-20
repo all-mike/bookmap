@@ -24,6 +24,7 @@ angular.module('hotmap')
       this.getSettings = () => {
         userSettings.get( results => {
           $scope.settings = results;
+          // panel.generateOptions();
         })
       }
 
@@ -32,6 +33,26 @@ angular.module('hotmap')
           $scope.folders = results;
         });
       }
+
+      // this.generateOptions = () => {
+      //   console.log($scope.settings);
+      //   console.log($scope.folders);
+      //   let savedfolders = Object.entries($scope.settings);
+      //   let selected = []
+      //   let options = []
+        
+      //   savedfolders.forEach(folder => {
+      //     selected.push(folder[1].id)
+      //   })
+
+      //   $scope.folders.forEach(folder => {
+      //     if (!selected.includes(folder.id)){
+      //       options.push(folder.id);
+      //     }
+      //   })
+      //   console.log('options is: ', options)
+      //   console.log('selected is: ', selected)
+      // }
 
       this.removeKey = index => {
         let tempkeys = Object.entries($scope.settings);
