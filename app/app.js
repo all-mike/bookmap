@@ -60,7 +60,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         ctrl.getTab()
         if (item) {
           bookMarks.save($scope.selected.id, $scope.currentTitle, $scope.currentTab, success => {
-            // window.close();
+            window.close();
           });
         } else {
           let folders = angular.element(document).find('folders');
@@ -69,12 +69,12 @@ angular.module('hotmap', ['ui.bootstrap'])
             bookMarks.newfolder(newtitle, successobj=> {
               bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
                 console.log('made a new folder!!')
-                // window.close();
+                window.close();
               });
             })
           } else {
             console.log('your option is switched off.')
-            // window.close();
+            window.close();
           }
         }
       }

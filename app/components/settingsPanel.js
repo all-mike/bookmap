@@ -55,7 +55,6 @@ angular.module('hotmap')
       }
 
       this.register = () => {
-        console.log($scope.settings);
         userSettings.save($scope.settings)
       };
 
@@ -64,11 +63,6 @@ angular.module('hotmap')
           url: 'chrome://extensions/configureCommands'
         });
       };
-
-      this.test = () => {
-        console.log('work')
-        console.log($scope.newfolderOption);
-      }
 
       // this.generateOptions = () => {
       //   console.log($scope.settings);
@@ -108,7 +102,6 @@ angular.module('hotmap')
           $scope.settings = results;
         })
         $timeout()
-        console.log($scope.settings);
       }
 
       this.$onInit = () => {
@@ -203,7 +196,7 @@ angular.module('hotmap')
             <div class="input-group">
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleOption()" width="100%">create new folders</button>
               <span class="input-group-btn">
-                <button class="btn btn-primary" type="button" ng-click="$ctrl.test()">
+                <button class="btn btn-primary" type="button">
                   <div ng-if="newfolderOption" id="settingtoggle"> ON </div>
                   <div ng-if="!newfolderOption" id="settingtoggle"> OFF </div>
                 </button>
