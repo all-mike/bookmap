@@ -65,10 +65,6 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         $scope.openpanel = false;
 
-        $scope.keydown = () => {
-          ctrl.savebm();
-        }
-
         //important for lifehook cycle
         $timeout()
 
