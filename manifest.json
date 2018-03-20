@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Hot-Map",
   "description": "Provides a multi folder hot-keyable bookmarker",
-  "version": "1.14",
+  "version": "1.15",
   "author": "Michael Walker, www.github.com/mdubbpro",
   "permissions": [
     "bookmarks",

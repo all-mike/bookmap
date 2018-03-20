@@ -127,7 +127,7 @@ angular.module('hotmap')
 
         <div>
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" autofocus>
+          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autofocus>
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('1')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -139,7 +139,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[1]">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
+          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('2')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -151,7 +151,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[2]">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
+          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -163,7 +163,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[3]">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[4]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()">
+          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[4]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('4')">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
