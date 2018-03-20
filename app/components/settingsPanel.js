@@ -37,12 +37,12 @@ angular.module('hotmap')
       }
 
       this.toggleTheme = () => {
-        if ($scope.theme == 'light-mode'){
-          panel.updateTheme('dark-mode');
-          userSettings.singlesave('theme', 'dark-mode');
-        } else {
+        if ($scope.theme == 'dark-mode'){
           panel.updateTheme('light-mode');
           userSettings.singlesave('theme', 'light-mode');
+        } else {
+          panel.updateTheme('dark-mode');
+          userSettings.singlesave('theme', 'dark-mode');
         }
       }
 
@@ -106,6 +106,7 @@ angular.module('hotmap')
 
       this.$onInit = () => {
 
+        $scope.
         panel.getOptions();
         panel.getMapkeys();
         panel.getBookmarks();
@@ -183,7 +184,7 @@ angular.module('hotmap')
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button">
                   <div ng-if="theme =='dark-mode'" id="settingtoggle"> ON </div>
-                  <div ng-if="theme =='light-mode'" id="settingtoggle"> OFF </div>
+                  <div ng-if="theme !=='dark-mode'" id="settingtoggle"> OFF </div>
                 </button>
               </span>
             </div>
