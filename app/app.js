@@ -118,7 +118,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         <div class="container-fluid">
 
           <div class="input-group">
-              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)">
+              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)">
               <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
           </div>
           
