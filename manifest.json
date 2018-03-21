@@ -21,7 +21,7 @@
     "persistent": true
   },
   "commands": {
-    "mapkey1": {
+    "mapkey0": {
       "suggested_key": {
         "windows": "Alt+1",
         "default": "Alt+1"
@@ -29,7 +29,7 @@
       "description": "Registered folder 0",
       "global": true
     },
-    "mapkey2": {
+    "mapkey1": {
       "suggested_key": {
         "windows": "Alt+2",
         "default": "Alt+2"
@@ -37,7 +37,7 @@
       "description": "Registered folder 1",
       "global": true
     },    
-    "mapkey3": {
+    "mapkey2": {
       "suggested_key": {
         "windows": "Alt+3",
         "default": "Alt+3"
@@ -45,7 +45,7 @@
       "description": "Registered folder 2",
       "global": true
     },
-    "mapkey4": {
+    "mapkey3": {
       "suggested_key": {
         "windows": "Alt+4",
         "default": "Alt+4"

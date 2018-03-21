@@ -1,8 +1,10 @@
 ## Hot-Map
 #### Version 0.21 Beta
 
-It is highly suggested that you assign hotkeys before using this app. This can be done from the settings under "keybindings".
+Hot-Map is designed to help you quickly save bookmarks. Here's a quick guide on getting started.
 
-Open the console and begin typing a folder name. When your target folder is selected press tab or enter to add a bookmark to it.
+1) Set up hotkeys, this can be done from "choose hotkeys" in the settings (top right icon).
 
-There are also 4 hot-keys (the maximum allowed by chrome extensions) that you can assign to folders for instant book mark creation.
+2) Use the "Activate the extension" hotkey to open the panel, type a folder name to save your bookmark to it.
+
+3) In the settings (top right icon) choose 4 folders to set to your other hotkeys. Use the hotkeys to instantly save to those folders.

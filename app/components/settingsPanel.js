@@ -17,6 +17,7 @@ angular.module('hotmap')
 
       this.getMapkeys = () => {
         userSettings.get( results => {
+          console.log(results);
           $scope.settings = results;
         })
       }
