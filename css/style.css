@@ -4,7 +4,7 @@
 }
 
 .papapanel{
-  margin-top:-12px
+  margin-top:15px
 }
 
 .settings-panel{
@@ -51,8 +51,18 @@ h4{
   width: 100%;
 }
 
-#rightlean{
+#hovercog{
+  margin-top: -70px;
+  margin-left: 220px;
   text-align: right;
+  position: absolute;
+}
+
+#hovercogopen{
+  margin-top: -135px;
+  margin-left: 220px;
+  text-align: right;
+  position: absolute;
 }
 
 #topentry{

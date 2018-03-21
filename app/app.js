@@ -112,20 +112,7 @@ angular.module('hotmap', ['ui.bootstrap'])
     `
       <div class="motherdom">
 
-        <div class="row" >
-
-          <div class="col-xs-9">
-            <h4 ng-if="!openpanel">Choose destination...</h4>
-            <!--<h4 ng-if="openpanel">Settings</h4>-->
-          </div>
-      
-          <div class="col-xs-3" id="rightlean">
-            <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="openpanel = !openpanel">
-              <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
-            </button>
-          </div>
-
-        </div>
+        <h4 ng-if="!openpanel">Choose destination...</h4>
 
         <div class="container-fluid">
 
@@ -138,6 +125,18 @@ angular.module('hotmap', ['ui.bootstrap'])
             <settings-panel></settings-panel>
           </div>
 
+        </div>
+
+        <div id="hovercog" ng-if="!openpanel">
+          <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="$parent.openpanel = !$parent.openpanel">
+            <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <div id="hovercogopen" ng-if="openpanel">
+          <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="$parent.openpanel = !$parent.openpanel">
+            <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
+          </button>
         </div>
 
       </div>
