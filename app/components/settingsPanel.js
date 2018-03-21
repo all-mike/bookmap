@@ -126,7 +126,7 @@ angular.module('hotmap')
       <div class="form-group">
 
         <div>
-          <div class="input-group">
+          <div class="input-group" id="topspace">
           <input name="folders" id="folders" type="text" placeholder="hotkey0 folder" ng-model="settings[0]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autofocus>
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('0')">
@@ -136,7 +136,7 @@ angular.module('hotmap')
           </div>
         <div>
 
-        <div ng-if="settings[0]" style="margin-top:6px">
+        <div ng-if="settings[0]" id="topspace">
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey1 folder" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
@@ -147,7 +147,7 @@ angular.module('hotmap')
           </div>
         </div>
 
-        <div ng-if="settings[1]" style="margin-top:6px">
+        <div ng-if="settings[1]" id="topspace">
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey2 folder" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
@@ -158,7 +158,7 @@ angular.module('hotmap')
           </div>
         </div>
 
-        <div ng-if="settings[2]" style="margin-top:6px">
+        <div ng-if="settings[2]" id="topspace">
           <div class="input-group">
           <input name="folders" id="folders" type="text" placeholder="hotkey3 folder" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
           <span class="input-group-btn">
@@ -171,9 +171,9 @@ angular.module('hotmap')
         
       <div>
 
-        <div id="miniheader" style="margin-top:6px">options</div>
+        <div id="miniheader" style="margin-top:8px">options</div>
 
-        <div class="row">
+        <div class="row" id="topspace">
           <div class="col-lg-10">
             <div class="input-group">
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleTheme()" width="100%">high contrast mode</button>
@@ -186,9 +186,8 @@ angular.module('hotmap')
             </div>
           </div>
         </div>
-        <div class="micro">theme settings for dark-reading</div>
 
-        <div class="row">
+        <div class="row" id="topspace">
           <div class="col-lg-10">
             <div class="input-group">
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleOption()" width="100%">create new folders</button>
@@ -201,10 +200,10 @@ angular.module('hotmap')
             </div>
           </div>
         </div>
-        <div class="micro">hitting "enter" on a new title will create a new folder</div>
 
-        <button class="btn btn-default" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">hotkey-bindings</button>
-        <div class="micro">launch chrome extension panel</div>
+        <div id="topspace">
+          <button class="btn btn-default" id="widebutt" ng-click="$ctrl.openShortcuts()" width="100%">choose hotkeys</button>
+        </div>
       </div>
     </div>
     `

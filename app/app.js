@@ -112,8 +112,8 @@ angular.module('hotmap', ['ui.bootstrap'])
     `
       <div class="motherdom">
 
-        <h4 ng-if="!openpanel">Choose destination...</h4>
-        <h4 ng-if="openpanel">Settings mode</h4>
+        <div ng-if="!openpanel"><h4>Choose destination...</h4></div>
+        <div ng-if="openpanel" id="faded"><h4>Choose destination...</h4></div>
 
         <div class="container-fluid">
 
