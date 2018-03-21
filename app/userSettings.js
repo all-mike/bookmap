@@ -33,5 +33,4 @@ angular.module('hotmap')
     }
 
     return settings;
-
   })

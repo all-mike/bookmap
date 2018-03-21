@@ -8,7 +8,7 @@ angular.module('hotmap')
       let results = [];
 
       chrome.bookmarks.getTree( bmNodes => {
-          bmNodes.forEach(function(node){
+          bmNodes.forEach( node => {
             if (node.children) {
               getFolders(node);
             }
@@ -49,5 +49,4 @@ angular.module('hotmap')
     }
 
     return bmstore;
-
   })

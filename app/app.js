@@ -46,7 +46,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         $timeout();
       }
 
-      this.savebm = (item) => {
+      this.savebm = item => {
         ctrl.getTab()
         if (item) {
           bookMarks.save($scope.selected.id, $scope.currentTitle, $scope.currentTab, success => {
@@ -56,14 +56,12 @@ angular.module('hotmap', ['ui.bootstrap'])
           let folders = angular.element(document).find('folders');
           let newtitle = folders.context.activeElement.value;
           if ($scope.newfolderOption){
-            bookMarks.newfolder(newtitle, successobj=> {
+            bookMarks.newfolder(newtitle, successobj => {
               bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
-                console.log('made a new folder!!')
                 window.close();
               });
             })
           } else {
-            console.log('your option is switched off.')
             window.close();
           }
         }
@@ -76,19 +74,11 @@ angular.module('hotmap', ['ui.bootstrap'])
         }
       }
 
-      this.selectFocus = () => {
-        let body = angular.element(document).find('body');
-        console.log(body)
-        let focuswrap = document.getElementById('foldersa');
-        console.log(focuswrap)
-      }
-
       this.$onInit = () => {
 
         ctrl.getOptions();
         ctrl.getBookmarks();
         ctrl.getTab();
-        ctrl.selectFocus();
 
         $scope.openpanel = false;
 
