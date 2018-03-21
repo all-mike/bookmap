@@ -23,6 +23,8 @@ h4{
 
 #miniheader{
   text-align:center !important;
+  margin-top: -4px;
+  padding-bottom: 4px;
 }
 
 #settingtoggle{

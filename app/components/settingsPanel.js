@@ -127,55 +127,51 @@ angular.module('hotmap')
 
         <div>
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autofocus>
+          <input name="folders" id="folders" type="text" placeholder="hotkey0 folder" ng-model="settings[0]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autofocus>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('0')">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+            </span>
+          </div>
+        <div>
+
+        <div ng-if="settings[0]" style="margin-top:6px">
+          <div class="input-group">
+          <input name="folders" id="folders" type="text" placeholder="hotkey1 folder" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('1')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
             </span>
           </div>
-          <div class="micro">hotkey 0</div>
-        <div>
+        </div>
 
-        <div ng-if="settings[1]">
+        <div ng-if="settings[1]" style="margin-top:6px">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="folders" id="folders" type="text" placeholder="hotkey2 folder" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('2')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               </button>
             </span>
           </div>
-          <div class="micro">hotkey 1</div>
         </div>
 
-        <div ng-if="settings[2]">
+        <div ng-if="settings[2]" style="margin-top:6px">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-              </button>
-            </span>
-          </div>
-          <div class="micro">hotkey 2</div>
-        </div>
-
-        <div ng-if="settings[3]">
-          <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="enter a folder to map" ng-model="settings[4]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="folders" id="folders" type="text" placeholder="hotkey3 folder" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
           <span class="input-group-btn">
-            <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('4')">
+            <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
           </span>
         </div>
-        <div class="micro">hotkey 3</div>
       </div>
         
       <div>
 
-        <div id="miniheader">options</div>
+        <div id="miniheader" style="margin-top:6px">options</div>
 
         <div class="row">
           <div class="col-lg-10">

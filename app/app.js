@@ -113,12 +113,19 @@ angular.module('hotmap', ['ui.bootstrap'])
       <div class="motherdom">
 
         <h4 ng-if="!openpanel">Choose destination...</h4>
+        <h4 ng-if="openpanel">Settings mode</h4>
 
         <div class="container-fluid">
 
-          <div class="input-group"  ng-if="!openpanel">
+          <div class="input-group">
               <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$parent.selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)">
               <span class="input-group-addon"><span class="glyphicon glyphicon-saved" aria-hidden="true"></span></span>
+          </div>
+          
+          <div id="maincog">
+            <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="openpanel = !openpanel">
+            <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
+            </button>
           </div>
 
           <div class="settings-panel" ng-if="openpanel">
@@ -127,7 +134,7 @@ angular.module('hotmap', ['ui.bootstrap'])
 
         </div>
 
-        <div id="hovercog" ng-if="!openpanel">
+        <!--<div id="hovercog" ng-if="!openpanel">
           <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="$parent.openpanel = !$parent.openpanel">
             <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
           </button>
@@ -137,7 +144,7 @@ angular.module('hotmap', ['ui.bootstrap'])
           <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="$parent.openpanel = !$parent.openpanel">
             <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
           </button>
-        </div>
+        </div>-->
 
       </div>
     `
