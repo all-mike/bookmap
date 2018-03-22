@@ -16,10 +16,9 @@ angular.module('bookmap')
           $rootScope.newfolderOpt = 'on'
           userSettings.singlesave('option', 'on')
         } else {
-          $rootScope.newfolderOpt = 'on'
+          $rootScope.newfolderOpt = 'off'
           userSettings.singlesave('option', 'off')
         }
-        $timeout()
       }
 
       this.toggleTheme = () => {
@@ -86,7 +85,7 @@ angular.module('bookmap')
 
         <div>
           <div class="input-group" id="topspace">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey0 folder" ng-model="$root.settings[0]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey0 folder" ng-model="$root.settings[0]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autocomplete="off">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('0')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -97,7 +96,7 @@ angular.module('bookmap')
 
         <div ng-if="$root.settings[0]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey1 folder" ng-model="$root.settings[1]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey1 folder" ng-model="$root.settings[1]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autocomplete="off">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('1')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -108,7 +107,7 @@ angular.module('bookmap')
 
         <div ng-if="$root.settings[1]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey2 folder" ng-model="$root.settings[2]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey2 folder" ng-model="$root.settings[2]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autocomplete="off">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('2')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -119,7 +118,7 @@ angular.module('bookmap')
 
         <div ng-if="$root.settings[2]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey3 folder" ng-model="$root.settings[3]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey3 folder" ng-model="$root.settings[3]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autocomplete="off">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>

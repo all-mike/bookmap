@@ -21,7 +21,7 @@ angular.module('bookmap', ['ui.bootstrap'])
       this.getOptions = () => {
         userSettings.multiget( result => {
           $rootScope.theme = result.theme || 'light-mode'
-          $rootScope.newfolderOpt = result.option || 'off'
+          $rootScope.newfolderOpt = result.option || 'on'
           ctrl.updateTheme(result.theme)
         })
       }
@@ -64,7 +64,6 @@ angular.module('bookmap', ['ui.bootstrap'])
 
       this.$onInit = () => {
         $rootScope.openpanel = false
-        $rootScope.newfolderOption =  true
         ctrl.getOptions()
         ctrl.getBookmarks()
         ctrl.getTab()
@@ -86,7 +85,7 @@ angular.module('bookmap', ['ui.bootstrap'])
         <div class="container-fluid">
 
           <div class="input-group">
-              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$root.selected" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)"  autocomplete="off" autofocus maininput>
+              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$root.selected" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)" autocomplete="off" autofocus>
           </div>
 
           <div id="maincog">
