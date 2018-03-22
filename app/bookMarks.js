@@ -1,4 +1,4 @@
-angular.module('hotmap')
+angular.module('bookmap')
   .factory('bookMarks', () => {
     const bmstore = {};
 

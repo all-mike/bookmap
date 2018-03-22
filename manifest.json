@@ -1,6 +1,6 @@
 { 
   "manifest_version": 2,
-  "name": "Hot-Map",
+  "name": "Book-Map",
   "description": "Provides a multi folder hot-keyable bookmarker",
   "version": "1.220",
   "author": "Michael Walker, www.github.com/mdubbpro",
@@ -10,8 +10,8 @@
     "storage"
   ],
   "browser_action": {
-      "default_title": "Hot-Map",
-      "default_icon": "icons/favicon-96x96.png",
+      "default_title": "Book-Map",
+      "default_icon": "icons/android-icon-192x192.png",
       "default_popup": "index.html"
   },
   "background": {
@@ -57,6 +57,8 @@
   "icons": {
     "16":"icons/favicon-16x16.png",
     "32":"icons/favicon-32x32.png",
-    "96":"icons/favicon-96x96.png"
+    "96":"icons/favicon-96x96.png",
+    "144":"icons/android-icon-144x144.png",
+    "192":"icons/android-icon-192x192.png"
   }
 }

@@ -1,4 +1,4 @@
-angular.module('hotmap', ['ui.bootstrap'])
+angular.module('bookmap', ['ui.bootstrap'])
   .component('popup', {
 
     controller(bookMarks, userSettings, $timeout, $rootScope) {
@@ -24,16 +24,6 @@ angular.module('hotmap', ['ui.bootstrap'])
           $rootScope.newfolderOption = result.option
           ctrl.updateTheme(result.theme)
         })
-      }
-
-      this.toggleTheme = () => {
-        if ($rootScope.theme == 'light-mode'){
-          ctrl.updateTheme('dark-mode')
-          userSettings.singlesave('theme', 'dark-mode')
-        } else {
-          ctrl.updateTheme('light-mode')
-          userSettings.singlesave('theme', 'light-mode')
-        }
       }
 
       this.updateTheme = classname => {

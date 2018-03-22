@@ -1,8 +1,8 @@
-angular.module('hotmap')
+angular.module('bookmap')
   .component('settingsPanel', {
 
     controller(bookMarks, userSettings, $timeout, $rootScope) {
-      
+
       const panel = this
 
       this.getMapkeys = () => {
@@ -70,9 +70,7 @@ angular.module('hotmap')
       }
 
       this.$onInit = () => {
-        // panel.getOptions()
         panel.getMapkeys()
-        // panel.getBookmarks()
         $timeout()
       }
 
