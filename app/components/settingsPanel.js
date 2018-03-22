@@ -12,7 +12,7 @@ angular.module('bookmap')
       }
 
       this.toggleOption = () => {
-        if ($rootScope.newfolderOpt === 'off'){
+        if ($rootScope.newfolderOpt == 'off'){
           $rootScope.newfolderOpt = 'on'
           userSettings.singlesave('option', 'on')
         } else {

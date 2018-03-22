@@ -43,7 +43,7 @@ angular.module('bookmap', ['ui.bootstrap'])
         } else {
           let folders = angular.element(document).find('folders')
           let newtitle = folders.context.activeElement.value
-          if ($rootScope.newfolderOption){
+          if ($rootScope.newfolderOpt == 'on'){
             bookMarks.newfolder(newtitle, successobj => {
               bookMarks.save(successobj.id, $rootScope.currentTitle, $rootScope.currentTab, success => {
                 window.close()
