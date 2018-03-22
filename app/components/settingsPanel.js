@@ -1,43 +1,28 @@
 angular.module('hotmap')
   .component('settingsPanel', {
 
-    controller(bookMarks, userSettings, $scope, $timeout) {
-
+    controller(bookMarks, userSettings, $timeout, $rootScope) {
+      
       const panel = this
-
-      this.getOptions = () => {
-        $scope.theme = 'light-mode'
-        userSettings.multiget( result => {
-          $scope.theme = result.theme || $scope.theme
-          $scope.newfolderOption = result.option
-          panel.updateTheme(result.theme)
-        })
-      }
 
       this.getMapkeys = () => {
         userSettings.get( results => {
-          $scope.settings = results
+          $rootScope.settings = results
         })
       }
 
-      this.getBookmarks = () => {
-        bookMarks.get( results => {
-          $scope.folders = results
-        });
-      }
-
       this.toggleOption = () => {
-        if ($scope.newfolderOption == true){
-          $scope.newfolderOption = false
+        if ($rootScope.newfolderOption == true){
+          $rootScope.newfolderOption = false
           userSettings.singlesave('option', false)
-        } else if ($scope.newfolderOption == false){
-          $scope.newfolderOption = true
+        } else if ($rootScope.newfolderOption == false){
+          $rootScope.newfolderOption = true
           userSettings.singlesave('option', true)
         }
       }
 
       this.toggleTheme = () => {
-        if ($scope.theme == 'dark-mode'){
+        if ($rootScope.theme == 'dark-mode'){
           panel.updateTheme('light-mode')
           userSettings.singlesave('theme', 'light-mode')
         } else {
@@ -47,7 +32,7 @@ angular.module('hotmap')
       }
 
       this.updateTheme = classname => {
-        $scope.theme = classname
+        $rootScope.theme = classname
         let body = angular.element(document).find('body')
         body.removeClass()
         body.addClass(classname)
@@ -55,7 +40,7 @@ angular.module('hotmap')
       }
 
       this.register = () => {
-        userSettings.save($scope.settings)
+        userSettings.save($rootScope.settings)
       };
 
       this.openShortcuts = () => {
@@ -65,7 +50,7 @@ angular.module('hotmap')
       };
 
       this.removeKey = index => {
-        let tempkeys = Object.entries($scope.settings)
+        let tempkeys = Object.entries($rootScope.settings)
         let temparr = []
         for (let i = 0 ; i < tempkeys.length ; i++){
           if (tempkeys[i][0] !== index){
@@ -73,21 +58,21 @@ angular.module('hotmap')
           }
         }
         for (let i = 0 ; i < temparr.length; i++){
-          $scope.settings[i] = temparr[i][1]
+          $rootScope.settings[i] = temparr[i][1]
         }
         let removedindex = temparr.length
-        $scope.settings[removedindex] = undefined
-        userSettings.save($scope.settings)
+        $rootScope.settings[removedindex] = undefined
+        userSettings.save($rootScope.settings)
         userSettings.get( results => {
-          $scope.settings = results
+          $rootScope.settings = results
         })
         $timeout()
       }
 
       this.$onInit = () => {
-        panel.getOptions()
+        // panel.getOptions()
         panel.getMapkeys()
-        panel.getBookmarks()
+        // panel.getBookmarks()
         $timeout()
       }
 
@@ -102,7 +87,7 @@ angular.module('hotmap')
 
         <div>
           <div class="input-group" id="topspace">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey0 folder" ng-model="settings[0]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey0 folder" ng-model="$root.settings[0]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('0')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -111,9 +96,9 @@ angular.module('hotmap')
           </div>
         <div>
 
-        <div ng-if="settings[0]" id="topspace">
+        <div ng-if="$root.settings[0]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey1 folder" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey1 folder" ng-model="$root.settings[1]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('1')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -122,9 +107,9 @@ angular.module('hotmap')
           </div>
         </div>
 
-        <div ng-if="settings[1]" id="topspace">
+        <div ng-if="$root.settings[1]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey2 folder" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey2 folder" ng-model="$root.settings[2]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('2')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -133,9 +118,9 @@ angular.module('hotmap')
           </div>
         </div>
 
-        <div ng-if="settings[2]" id="topspace">
+        <div ng-if="$root.settings[2]" id="topspace">
           <div class="input-group">
-          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey3 folder" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey3 folder" ng-model="$root.settings[3]" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -154,8 +139,8 @@ angular.module('hotmap')
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleTheme()" width="100%">high contrast mode</button>
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleTheme()">
-                  <div ng-if="theme =='dark-mode'" id="settingtoggle"> ON </div>
-                  <div ng-if="theme !=='dark-mode'" id="settingtoggle"> OFF </div>
+                  <div ng-if="$root.theme =='dark-mode'" id="settingtoggle"> ON </div>
+                  <div ng-if="$root.theme !=='dark-mode'" id="settingtoggle"> OFF </div>
                 </button>
               </span>
             </div>
@@ -168,8 +153,8 @@ angular.module('hotmap')
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleOption()" width="100%">create new folders</button>
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleOption()">
-                  <div ng-if="newfolderOption" id="settingtoggle"> ON </div>
-                  <div ng-if="!newfolderOption" id="settingtoggle"> OFF </div>
+                  <div ng-if="$root.newfolderOption" id="settingtoggle"> ON </div>
+                  <div ng-if="!$root.newfolderOption" id="settingtoggle"> OFF </div>
                 </button>
               </span>
             </div>

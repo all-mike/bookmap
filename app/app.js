@@ -1,34 +1,33 @@
 angular.module('hotmap', ['ui.bootstrap'])
   .component('popup', {
 
-    controller(bookMarks, userSettings, $timeout, $scope) {
-
+    controller(bookMarks, userSettings, $timeout, $rootScope) {
+      
       const ctrl = this
-      this.folders = []
 
       this.getBookmarks = () => {
         bookMarks.get( results => {
-          $scope.folders = results
+          $rootScope.folders = results
         });
       }
 
       this.getTab = () => {
         chrome.tabs.getSelected(null, tab => {
-          $scope.currentTab = tab.url
-          $scope.currentTitle = tab.title
+          $rootScope.currentTab = tab.url
+          $rootScope.currentTitle = tab.title
         })
       } 
 
       this.getOptions = () => {
         userSettings.multiget( result => {
-          $scope.theme = result.theme || 'light-mode'
-          $scope.newfolderOption = result.option
+          $rootScope.theme = result.theme || 'light-mode'
+          $rootScope.newfolderOption = result.option
           ctrl.updateTheme(result.theme)
         })
       }
 
       this.toggleTheme = () => {
-        if ($scope.theme == 'light-mode'){
+        if ($rootScope.theme == 'light-mode'){
           ctrl.updateTheme('dark-mode')
           userSettings.singlesave('theme', 'dark-mode')
         } else {
@@ -38,7 +37,7 @@ angular.module('hotmap', ['ui.bootstrap'])
       }
 
       this.updateTheme = classname => {
-        $scope.theme = classname
+        $rootScope.theme = classname
         let body = angular.element(document).find('body')
         body.removeClass()
         body.addClass(classname)
@@ -48,15 +47,15 @@ angular.module('hotmap', ['ui.bootstrap'])
       this.savebm = item => {
         ctrl.getTab()
         if (item) {
-          bookMarks.save($scope.selected.id, $scope.currentTitle, $scope.currentTab, success => {
+          bookMarks.save($rootScope.selected.id, $rootScope.currentTitle, $rootScope.currentTab, success => {
             window.close()
           })
         } else {
           let folders = angular.element(document).find('folders')
           let newtitle = folders.context.activeElement.value
-          if ($scope.newfolderOption){
+          if ($rootScope.newfolderOption){
             bookMarks.newfolder(newtitle, successobj => {
-              bookMarks.save(successobj.id, $scope.currentTitle, $scope.currentTab, success => {
+              bookMarks.save(successobj.id, $rootScope.currentTitle, $rootScope.currentTab, success => {
                 window.close()
               })
             })
@@ -77,7 +76,7 @@ angular.module('hotmap', ['ui.bootstrap'])
         ctrl.getOptions();
         ctrl.getBookmarks();
         ctrl.getTab();
-        $scope.openpanel = false
+        $rootScope.openpanel = false
         $timeout( () => {
           $(document).ready( () => {
             $("#folders").focus()
@@ -90,22 +89,22 @@ angular.module('hotmap', ['ui.bootstrap'])
     `
       <div class="motherdom">
 
-        <div ng-if="!openpanel"><h4>choose destination...</h4></div>
-        <div ng-if="openpanel" id="faded"><h4>choose destination...</h4></div>
+        <div ng-if="!$root.openpanel"><h4>choose destination...</h4></div>
+        <div ng-if="$root.openpanel" id="faded"><h4>choose destination...</h4></div>
 
         <div class="container-fluid">
 
           <div class="input-group">
-              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="selected" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)"  autocomplete="off" autofocus maininput>
+              <input name="folders" id="folders" type="text" placeholder="enter a folder" ng-model="$root.selected" uib-typeahead="bm as bm.title for bm in $root.folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.savebm($item)" ng-keypress="$ctrl.checkSubmit($event)"  autocomplete="off" autofocus maininput>
           </div>
 
           <div id="maincog">
-            <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="openpanel = !openpanel">
+            <button class="btn btn-primary" type="viewchange" id="cogbutt" ng-click="$root.openpanel = !$root.openpanel">
             <span class="glyphicon glyphicon-cog" id="cog" aria-hidden="true"></span>
             </button>
           </div>
 
-          <div class="settings-panel" ng-if="openpanel">
+          <div class="settings-panel" ng-if="$root.openpanel">
             <settings-panel></settings-panel>
           </div>
 
