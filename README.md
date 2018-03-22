@@ -1,7 +1,7 @@
-## Hot-Map
+## BookMap
 #### Version 0.21 Beta
 
-Hot-Map is designed to help you quickly save bookmarks. Here's a quick guide on getting started.
+BookMap is designed to help you quickly save bookmarks. Here's a quick guide on getting started.
 
 1) Set up hotkeys, this can be done from "choose hotkeys" in the settings (top right icon).
 

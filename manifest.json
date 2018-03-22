@@ -1,8 +1,8 @@
 { 
   "manifest_version": 2,
-  "name": "Book-Map",
-  "description": "Book-Map is designed to greatly decrease the time it takes to a save bookmark to a target folder",
-  "version": "1.230",
+  "name": "BookMap",
+  "description": "BookMap is designed to greatly decrease the time it takes to a save bookmark to a target folder.",
+  "version": "1.231",
   "author": "Michael Walker, www.github.com/mdubbpro",
   "permissions": [
     "bookmarks",

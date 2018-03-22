@@ -21,7 +21,7 @@ angular.module('bookmap', ['ui.bootstrap'])
       this.getOptions = () => {
         userSettings.multiget( result => {
           $rootScope.theme = result.theme || 'light-mode'
-          $rootScope.newfolderOption = result.option
+          $rootScope.newfolderOpt = result.option || 'off'
           ctrl.updateTheme(result.theme)
         })
       }
@@ -63,10 +63,11 @@ angular.module('bookmap', ['ui.bootstrap'])
       }
 
       this.$onInit = () => {
-        ctrl.getOptions();
-        ctrl.getBookmarks();
-        ctrl.getTab();
         $rootScope.openpanel = false
+        $rootScope.newfolderOption =  true
+        ctrl.getOptions()
+        ctrl.getBookmarks()
+        ctrl.getTab()
         $timeout( () => {
           $(document).ready( () => {
             $("#folders").focus()

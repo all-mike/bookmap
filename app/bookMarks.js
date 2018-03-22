@@ -1,14 +1,14 @@
 angular.module('bookmap')
   .factory('bookMarks', () => {
-    const bmstore = {};
+    const bmstore = {}
 
     bmstore.get = cb => {
-      let results = [];
+      let results = []
 
       chrome.bookmarks.getTree( bmNodes => {
           bmNodes.forEach( node => {
             if (node.children) {
-              getFolders(node);
+              getFolders(node)
             }
           })
         }

@@ -12,13 +12,14 @@ angular.module('bookmap')
       }
 
       this.toggleOption = () => {
-        if ($rootScope.newfolderOption == true){
-          $rootScope.newfolderOption = false
-          userSettings.singlesave('option', false)
-        } else if ($rootScope.newfolderOption == false){
-          $rootScope.newfolderOption = true
-          userSettings.singlesave('option', true)
+        if ($rootScope.newfolderOpt === 'off'){
+          $rootScope.newfolderOpt = 'on'
+          userSettings.singlesave('option', 'on')
+        } else {
+          $rootScope.newfolderOpt = 'on'
+          userSettings.singlesave('option', 'off')
         }
+        $timeout()
       }
 
       this.toggleTheme = () => {
@@ -151,8 +152,8 @@ angular.module('bookmap')
             <button class="btn btn-default" id="widebutt" ng-click="$ctrl.toggleOption()" width="100%">create new folders</button>
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button" ng-click="$ctrl.toggleOption()">
-                  <div ng-if="$root.newfolderOption" id="settingtoggle"> ON </div>
-                  <div ng-if="!$root.newfolderOption" id="settingtoggle"> OFF </div>
+                  <div ng-if="$root.newfolderOpt == 'on'" id="settingtoggle"> ON </div>
+                  <div ng-if="$root.newfolderOpt !== 'on'" id="settingtoggle"> OFF </div>
                 </button>
               </span>
             </div>
