@@ -1,59 +1,57 @@
 angular.module('hotmap')
-
   .component('settingsPanel', {
 
     controller(bookMarks, userSettings, $scope, $timeout) {
 
-      const panel = this;
+      const panel = this
 
       this.getOptions = () => {
         $scope.theme = 'light-mode'
         userSettings.multiget( result => {
           $scope.theme = result.theme || $scope.theme
-          $scope.newfolderOption = result.option || true
-          panel.updateTheme(result.theme);
+          $scope.newfolderOption = result.option
+          panel.updateTheme(result.theme)
         })
       }
 
       this.getMapkeys = () => {
         userSettings.get( results => {
-          console.log(results);
-          $scope.settings = results;
+          $scope.settings = results
         })
       }
 
       this.getBookmarks = () => {
         bookMarks.get( results => {
-          $scope.folders = results;
+          $scope.folders = results
         });
       }
 
       this.toggleOption = () => {
         if ($scope.newfolderOption == true){
-          $scope.newfolderOption = false;
+          $scope.newfolderOption = false
           userSettings.singlesave('option', false)
         } else if ($scope.newfolderOption == false){
-          $scope.newfolderOption = true;
-          userSettings.singlesave('option', false)
+          $scope.newfolderOption = true
+          userSettings.singlesave('option', true)
         }
       }
 
       this.toggleTheme = () => {
         if ($scope.theme == 'dark-mode'){
-          panel.updateTheme('light-mode');
-          userSettings.singlesave('theme', 'light-mode');
+          panel.updateTheme('light-mode')
+          userSettings.singlesave('theme', 'light-mode')
         } else {
-          panel.updateTheme('dark-mode');
-          userSettings.singlesave('theme', 'dark-mode');
+          panel.updateTheme('dark-mode')
+          userSettings.singlesave('theme', 'dark-mode')
         }
       }
 
       this.updateTheme = classname => {
-        $scope.theme = classname;
-        let body = angular.element(document).find('body');
-        body.removeClass();
-        body.addClass(classname);
-        $timeout();
+        $scope.theme = classname
+        let body = angular.element(document).find('body')
+        body.removeClass()
+        body.addClass(classname)
+        $timeout()
       }
 
       this.register = () => {
@@ -66,29 +64,9 @@ angular.module('hotmap')
         });
       };
 
-      // this.generateOptions = () => {
-      //   console.log($scope.settings);
-      //   console.log($scope.folders);
-      //   let savedfolders = Object.entries($scope.settings);
-      //   let selected = []
-      //   let options = []
-        
-      //   savedfolders.forEach(folder => {
-      //     selected.push(folder[1].id)
-      //   })
-
-      //   $scope.folders.forEach(folder => {
-      //     if (!selected.includes(folder.id)){
-      //       options.push(folder.id);
-      //     }
-      //   })
-      //   console.log('options is: ', options)
-      //   console.log('selected is: ', selected)
-      // }
-
       this.removeKey = index => {
-        let tempkeys = Object.entries($scope.settings);
-        let temparr = [];
+        let tempkeys = Object.entries($scope.settings)
+        let temparr = []
         for (let i = 0 ; i < tempkeys.length ; i++){
           if (tempkeys[i][0] !== index){
             temparr.push([tempkeys[i][0], tempkeys[i][1]])
@@ -97,24 +75,20 @@ angular.module('hotmap')
         for (let i = 0 ; i < temparr.length; i++){
           $scope.settings[i] = temparr[i][1]
         }
-        let removedindex = temparr.length;
-        $scope.settings[removedindex] = undefined;
+        let removedindex = temparr.length
+        $scope.settings[removedindex] = undefined
         userSettings.save($scope.settings)
         userSettings.get( results => {
-          $scope.settings = results;
+          $scope.settings = results
         })
         $timeout()
       }
 
       this.$onInit = () => {
-
-        panel.getOptions();
-        panel.getMapkeys();
-        panel.getBookmarks();
-
-        //important for lifehook cycle
+        panel.getOptions()
+        panel.getMapkeys()
+        panel.getBookmarks()
         $timeout()
-
       }
 
     },
@@ -128,7 +102,7 @@ angular.module('hotmap')
 
         <div>
           <div class="input-group" id="topspace">
-          <input name="folders" id="folders" type="text" placeholder="hotkey0 folder" ng-model="settings[0]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false" autofocus>
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey0 folder" ng-model="settings[0]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('0')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -139,7 +113,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[0]" id="topspace">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="hotkey1 folder" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey1 folder" ng-model="settings[1]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('1')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -150,7 +124,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[1]" id="topspace">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="hotkey2 folder" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey2 folder" ng-model="settings[2]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('2')">
                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -161,7 +135,7 @@ angular.module('hotmap')
 
         <div ng-if="settings[2]" id="topspace">
           <div class="input-group">
-          <input name="folders" id="folders" type="text" placeholder="hotkey3 folder" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
+          <input name="sfolders" id="sfolders" type="text" placeholder="hotkey3 folder" ng-model="settings[3]" uib-typeahead="bm as bm.title for bm in folders | filter:$viewValue | limitTo:8" class="form-control" typeahead-on-select="$ctrl.register()" typeahead-editable="false">
           <span class="input-group-btn">
             <button class="btn btn-default" type="button" ng-click="$ctrl.removeKey('3')">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -172,7 +146,7 @@ angular.module('hotmap')
         
       <div>
 
-        <div id="miniheader" style="margin-top:8px">options</div>
+        <div id="miniheader" style="margin-top:8px">settings</div>
 
         <div class="row" id="topspace">
           <div class="col-lg-10">

@@ -1,7 +1,5 @@
 angular.module('hotmap')
-
   .factory('bookMarks', () => {
-    
     const bmstore = {};
 
     bmstore.get = cb => {
@@ -22,11 +20,11 @@ angular.module('hotmap')
             id: node.id
           })
           node.children.forEach( node => {
-            getFolders(node);
+            getFolders(node)
           })
         }
       }
-      cb(results);
+      cb(results)
     }
 
     bmstore.save = (parentId, title, url, cb) => {
@@ -36,7 +34,7 @@ angular.module('hotmap')
         url
       }, success => {
         cb(success)
-      });
+      })
     }
 
     bmstore.newfolder = (title, cb) => {
